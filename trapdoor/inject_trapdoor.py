@@ -129,13 +129,13 @@ def main():
     print("First Step: Training Normal Model...")
     new_model.fit_generator(clean_train_gen, validation_data=test_nor_gen, steps_per_epoch=number_images // 32,
                             epochs=model.epochs, verbose=2, callbacks=callbacks, validation_steps=100,
-                            use_multiprocessing=True,
+                            use_multiprocessing=False,
                             workers=1)
 
     print("Second Step: Injecting Trapdoor...")
     new_model.fit_generator(trap_train_gen, validation_data=test_nor_gen, steps_per_epoch=number_images // 32,
                             epochs=model.epochs, verbose=2, callbacks=callbacks, validation_steps=100,
-                            use_multiprocessing=True,
+                            use_multiprocessing=False,
                             workers=1)
 
     if not os.path.exists(model_file):
